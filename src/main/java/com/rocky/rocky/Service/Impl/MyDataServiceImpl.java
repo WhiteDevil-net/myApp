@@ -16,8 +16,6 @@ public class MyDataServiceImpl implements MyDataService {
 
     @Autowired
     MyDateRepositoty myDateRepositoty;
-    @Autowired
-    CsvHelper csvHelper;
 
     @Override
     public MyData saveRecord(MyData data){
@@ -34,7 +32,7 @@ public class MyDataServiceImpl implements MyDataService {
     }
     @Override
     public void loadData(MultipartFile file) throws Exception{
-        List<MyData> myDataList = csvHelper.convertCsvToMyData(file.getInputStream());
+        List<MyData> myDataList = CsvHelper.convertCsvToMyData(file.getInputStream());
         myDateRepositoty.saveAll(myDataList);
     }
 }
