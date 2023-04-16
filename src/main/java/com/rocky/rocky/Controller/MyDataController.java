@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -59,4 +60,27 @@ public class MyDataController {
             return new ResponseEntity<>(new RestResponce(HttpStatus.OK,"error Occurred",""),HttpStatus.OK);
         }
     }
+    @GetMapping(value = "/gpt/{message}")
+    public ResponseEntity<RestResponce> gpt(@PathVariable String message){
+        try {
+           String  gpt = myDataService.gpt(message);
+            return new ResponseEntity<>(new RestResponce(HttpStatus.OK,"success",gpt),HttpStatus.OK);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(new RestResponce(HttpStatus.OK,"error Occurred",""),HttpStatus.OK);
+        }
+    }
+    @GetMapping(value = "/gpt/image/{message}")
+    public ResponseEntity<RestResponce> gpt1(@PathVariable String message){
+        try {
+            Map<String,Object>  gpt = myDataService.imageGeneration(message);
+            return new ResponseEntity<>(new RestResponce(HttpStatus.OK,"success",gpt),HttpStatus.OK);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(new RestResponce(HttpStatus.OK,"error Occurred",""),HttpStatus.OK);
+        }
+    }
+
 }

@@ -4,6 +4,7 @@ import com.rocky.rocky.Entity.MyData;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface MyDataService {
@@ -12,4 +13,9 @@ public interface MyDataService {
     Optional<MyData> getSomeData(Integer id);
 
     void loadData(MultipartFile file) throws Exception;
+
+    String  gpt(String message);
+
+
+    Map<String, Object> imageGeneration(String message);
 }
