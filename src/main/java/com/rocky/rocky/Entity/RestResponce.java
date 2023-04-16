@@ -11,7 +11,7 @@ public class RestResponce {
     private String message;
     private  Object body;
 
-    public RestResponce(HttpStatus status, String message, Object body) {
+    public <T> RestResponce(HttpStatus status, String message, T body) {
         this.status = status;
         this.message = message;
         this.body = body;
